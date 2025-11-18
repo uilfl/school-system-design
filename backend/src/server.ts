@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import { errorHandler } from './common/middleware/error-handler';
 import { logger } from './common/utils/logger';
 import { prisma } from './database/client';
+import { setupSwagger } from './config/swagger';
 import routes from './routes';
 
 // Load environment variables
@@ -20,6 +21,12 @@ app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) } }));
+
+// Swagger API Documentation
+if (process.env.NODE_ENV !== 'production') {
+  setupSwagger(app);
+  logger.info(`📚 API Docs: http://localhost:${PORT}/api/v1/docs`);
+}
 
 // Health check
 app.get('/health', async (req, res) => {
@@ -67,6 +74,9 @@ app.listen(PORT, () => {
   logger.info(`🚀 Server is running on port ${PORT}`);
   logger.info(`📝 Environment: ${process.env.NODE_ENV}`);
   logger.info(`🔗 API: http://localhost:${PORT}${process.env.API_PREFIX}`);
+  if (process.env.NODE_ENV !== 'production') {
+    logger.info(`📚 Docs: http://localhost:${PORT}/api/v1/docs`);
+  }
 });
 
 export default app;

@@ -228,19 +228,23 @@ kubectl get services -n school-saas
 
 ## 📋 待辦事項
 
-### Phase 1 - MVP (已完成)
+### Phase 1 - MVP (✅ 已完成)
 - [x] 平台層基礎架構
   - [x] 多租戶架構
   - [x] JWT 認證系統
   - [x] RBAC 權限系統
 - [x] 核心模組
   - [x] 學籍管理系統 (SIS)
-  - [ ] 課程與課表管理（基礎版）
-  - [ ] 出缺勤管理（基礎版）
+  - [x] 課程與課表管理
+  - [x] 出缺勤管理
+  - [x] 成績評量系統
 - [x] 基礎設施
   - [x] Docker 開發環境
   - [x] CI/CD Pipeline
   - [x] 資料庫設計
+  - [x] Swagger API 文檔
+  - [x] 種子資料
+  - [x] K8s 部署配置
 
 ### Phase 2 - 增強功能
 - [ ] 完整的課程選課系統
